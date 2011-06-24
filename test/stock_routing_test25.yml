@@ -1,0 +1,36 @@
+-
+    17. Create and modify stock moves
+-
+    # Create the first stock location
+    !record {model: stock.location, id: stock_routing_stock_location_test17_location1}:
+        name: 'Stock routing Test 17 - Location 1'
+-
+    # Create the second stock location
+    !record {model: stock.location, id: stock_routing_stock_location_test17_location2}:
+        name: 'Stock routing Test 17 - Location 2'
+-
+    # Create the stock round
+    !record {model: stock.round, id: stock_routing_stock_round_test17}:
+        name: Stock routing Test 17
+        location_id: stock_routing_stock_location_test17_location1
+-
+    # Create the stock picking
+    !record {model: stock.picking, id: stock_routing_stock_picking_test17}:
+        name: Stock routing Test 17
+        type: out
+        partner_id: base.main_partner
+        address_id: base.main_address
+        round_id: stock_routing_stock_round_test17
+        move_lines:
+            -
+                name: Stock routing Test 17
+                product_id: product.product_product_cpu1
+                product_uom: product.product_uom_unit
+                product_qty: 5
+                location_id: stock.stock_location_stock
+                location_dest_id: stock_routing_stock_location_test17_location2
+-
+    # Assert the location_dest_id on the moves
+    !assert {model: stock.move, search: "[('picking_id', '=', ref(\"stock_routing_stock_picking_test17\"))]", string: 'Location on the moves'}:
+        - location_dest_id.id == ref('stock_routing_stock_location_test17_location1')
+

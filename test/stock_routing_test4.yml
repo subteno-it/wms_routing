@@ -1,0 +1,17 @@
+-
+    4. Auto filling of the form
+-
+    # Create the stock round
+    !record {model: stock.round, id: stock_routing_stock_round_test4}:
+        name: Stock routing Test 4
+-
+    # Create the partner address
+    !record {model: res.partner.address, id: stock_routing_res_partner_address_test4}:
+        name: Stock routing Test 4
+        round_id: stock_routing_stock_round_test4
+-
+    # Call the "onchange_shipping_address" method for the sale order and check the returned value
+    !python {model: sale.order}: |
+        res = self.onchange_shipping_address(cr, uid, [], False, ref('stock_routing_res_partner_address_test4'), False)
+        assert res['value']['round_id'] == ref('stock_routing_stock_round_test4'), 'Assertion "Automatic filling" FAILED'
+
