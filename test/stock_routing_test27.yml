@@ -1,22 +1,22 @@
 -
-    19. Create and modify stock moves
+    27. Create and modify stock moves
 -
     # Create the first stock location
     !record {model: stock.location, id: stock_routing_stock_location_test19_location1}:
-        name: 'Stock routing Test 19 - Location 1'
+        name: 'Stock routing Test 27 - Location 1'
 -
     # Create the second stock location
     !record {model: stock.location, id: stock_routing_stock_location_test19_location2}:
-        name: 'Stock routing Test 19 - Location 2'
+        name: 'Stock routing Test 27 - Location 2'
 -
     # Create the stock round
     !record {model: stock.round, id: stock_routing_stock_round_test19}:
-        name: Stock routing Test 19
+        name: Stock routing Test 27
         location_id: stock_routing_stock_location_test19_location1
 -
     # Create the first stock picking
     !record {model: stock.picking, id: stock_routing_stock_picking_test19_picking1}:
-        name: 'Stock routing Test 19 - Picking 1'
+        name: 'Stock routing Test 27 - Picking 1'
         type: out
         partner_id: base.main_partner
         address_id: base.main_address
@@ -24,7 +24,7 @@
 -
     # Create the first stock move
     !record {model: stock.move, id: stock_routing_stock_move_test19_move1}:
-        name: 'Stock routing Test 19 - Move 1'
+        name: 'Stock routing Test 27 - Move 1'
         picking_id: stock_routing_stock_picking_test19_picking1
         product_id: product.product_product_cpu1
         product_uom: product.product_uom_unit
@@ -34,13 +34,13 @@
 -
     # Create the second stock picking
     !record {model: stock.picking, id: stock_routing_stock_picking_test19_picking2}:
-        name: 'Stock routing Test 19 - Picking 2'
+        name: 'Stock routing Test 27 - Picking 2'
         type: out
         partner_id: base.main_partner
         address_id: base.main_address
         move_lines:
             -
-                name: Stock routing Test 19
+                name: Stock routing Test 27
                 product_id: product.product_product_cpu1
                 product_uom: product.product_uom_unit
                 product_qty: 5

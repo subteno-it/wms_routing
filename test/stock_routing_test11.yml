@@ -1,43 +1,40 @@
 -
-    3. Auto filling of the form
+    11. Auto filling of the form
 -
     # Create the first stock round
-    !record {model: stock.round, id: stock_routing_stock_round_test3_round1}:
-        name: 'Stock routing Test 3 - Round 1'
+    !record {model: stock.round, id: stock_routing_stock_round_test11_round1}:
+        name: 'Stock routing Test 11 - Round 1'
 -
     # Create the second stock round
-    !record {model: stock.round, id: stock_routing_stock_round_test3_round2}:
-        name: 'Stock routing Test 3 - Round 2'
+    !record {model: stock.round, id: stock_routing_stock_round_test11_round2}:
+        name: 'Stock routing Test 11 - Round 2'
 -
     # Create the partner
-    !record {model: res.partner, id: stock_routing_res_partner_test3}:
-        name: Stock routing Test 3
-        round_id: stock_routing_stock_round_test3_round1
+    !record {model: res.partner, id: stock_routing_res_partner_test11}:
+        name: Stock routing Test 11
+        round_id: stock_routing_stock_round_test11_round1
 -
     # Create the partner address
-    !record {model: res.partner.address, id: stock_routing_res_partner_address_test3}:
-        name: Stock routing Test 3
+    !record {model: res.partner.address, id: stock_routing_res_partner_address_test11}:
+        name: Stock routing Test 11
 -
     # Create the sale order
-    !record {model: sale.order, id: stock_routing_sale_order_test3}:
-        name: Stock routing Test 3
-        partner_id: stock_routing_res_partner_test3
-        partner_order_id: stock_routing_res_partner_address_test3
-        partner_invoice_id: stock_routing_res_partner_address_test3
-        partner_shipping_id: stock_routing_res_partner_address_test3
-        round_id: stock_routing_stock_round_test3_round2
+    !record {model: sale.order, id: stock_routing_sale_order_test11}:
+        name: Stock routing Test 11
+        partner_id: stock_routing_res_partner_test11
+        partner_order_id: stock_routing_res_partner_address_test11
+        partner_invoice_id: stock_routing_res_partner_address_test11
+        partner_shipping_id: stock_routing_res_partner_address_test11
+        round_id: stock_routing_stock_round_test11_round2
         pricelist_id: product.list0
         order_line:
             -
-                name: Stock routing Test 3
+                name: Stock routing Test 11
                 product_id: product.product_product_cpu1
                 product_uom: product.product_uom_unit
                 product_uom_qty: 5
 -
     # Call the "onchange_shipping_address" method for the sale order and check the returned value
-    !python {model: sale.order}: |
-        sale_order_id = ref('stock_routing_sale_order_test3')
-        sale_order = self.browse(cr, uid, sale_order_id, context=context)
-        res = self.onchange_shipping_address(cr, uid, sale_order_id, sale_order.partner_id and sale_order.partner_id.id, sale_order.partner_shipping_id and sale_order.partner_shipping_id.id, sale_order.round_id and sale_order.round_id.id)
-        assert res == {}, 'Assertion "Automatic filling" FAILED'
+    !assert {model: sale.order, id: stock_routing_sale_order_test11, string: Automatic form filling}:
+        - onchange_shipping_address(partner_id.id, partner_shipping_id.id, round_id.id) == {}
 

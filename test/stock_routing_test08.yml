@@ -15,7 +15,6 @@
         round_id: stock_routing_stock_round_test8_round1
 -
     # Call the "onchange_shipping_address" method for the sale order and check the returned value
-    !python {model: sale.order}: |
-        res = self.onchange_shipping_address(cr, uid, [], ref('stock_routing_res_partner_test8'), False, ref('stock_routing_stock_round_test8_round2'))
-        assert res == {}, 'Assertion "Automatic filling" FAILED'
+    !assert {model: sale.order, search: "[]", string: Automatic form filling}:
+        - onchange_shipping_address(ref('stock_routing_res_partner_test8'), False, ref('stock_routing_stock_round_test8_round2')) == {}
 
