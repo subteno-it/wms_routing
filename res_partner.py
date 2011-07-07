@@ -30,7 +30,7 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-        'round_id': fields.many2one('stock.round', 'Round', required=True, help='The default round for this partner'),
+        'round_id': fields.many2one('stock.round', 'Round', help='The default round for this partner'),
     }
 
 res_partner()
