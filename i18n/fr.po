@@ -28,7 +28,7 @@ msgstr "La référence de la commande doit être unique !"
 #. module: stock_routing
 #: help:sale.order,round_id:0
 msgid "Round for this sale order"
-msgstr "Tournée de cette commande de vente"
+msgstr "Acheminement de cette commande de vente"
 
 #. module: stock_routing
 #: field:stock.round,name:0
@@ -48,17 +48,17 @@ msgstr "Mouvement de stock"
 #. module: stock_routing
 #: help:stock.picking,round_id:0
 msgid "Round for this picking"
-msgstr "Tournée de ce bon"
+msgstr "Acheminement de ce bon"
 
 #. module: stock_routing
 #: help:res.partner.address,round_id:0
 msgid "The default round for this address"
-msgstr "La tournée par défaut pour ce contact"
+msgstr "L'acheminement par défaut pour ce contact"
 
 #. module: stock_routing
 #: model:ir.module.module,description:stock_routing.module_meta_information
 msgid "This module allows to assing rounds to orders to set default locations automatically on moves"
-msgstr "Ce module permet d'attribuer des tournées aux commandes, pour remplir les emplacements de destination avec des valeurs par défaut"
+msgstr "Ce module permet d'attribuer des acheminements aux commandes, pour remplir les emplacements de destination avec des valeurs par défaut"
 
 #. module: stock_routing
 #: field:stock.round,location_id:0
@@ -68,7 +68,7 @@ msgstr "Destination"
 #. module: stock_routing
 #: help:res.partner,round_id:0
 msgid "The default round for this partner"
-msgstr "La tournée par défaut pour ce partenaire"
+msgstr "L'acheminement par défaut pour ce partenaire"
 
 #. module: stock_routing
 #: constraint:stock.move:0
@@ -83,7 +83,7 @@ msgstr "Commande de vente"
 #. module: stock_routing
 #: help:stock.round,location_id:0
 msgid "Location for this round"
-msgstr "Emplacement de la tournée"
+msgstr "Emplacement de l'acheminement"
 
 #. module: stock_routing
 #: model:ir.model,name:stock_routing.model_stock_picking
@@ -114,7 +114,7 @@ msgstr "Carnet d'adresses"
 #: field:stock.picking,round_id:0
 #: view:stock.round:0
 msgid "Round"
-msgstr "Tournée"
+msgstr "Acheminement"
 
 #. module: stock_routing
 #: model:ir.module.module,shortdesc:stock_routing.module_meta_information
