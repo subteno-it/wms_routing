@@ -33,6 +33,7 @@ class stock_round(osv.osv):
     _columns = {
         'name': fields.char('Name', size=64, required=True, help='Name of the round'),
         'location_id': fields.many2one('stock.location', 'Destination', help='Location for this round'),
+        'company_id': fields.many2one('res.company', 'Company', help='The company of this round'),
     }
 
 stock_round()

@@ -43,6 +43,7 @@
         'res_partner_view.xml',
         'sale_order_view.xml',
         'stock_picking_view.xml',
+        'ir_rule_data.xml',
     ],
     'demo_xml': [],
     'test': [
