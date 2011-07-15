@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-06-23 10:15+0000\n"
-"PO-Revision-Date: 2011-06-23 10:15+0000\n"
+"POT-Creation-Date: 2011-07-15 12:38+0000\n"
+"PO-Revision-Date: 2011-07-15 12:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,41 +21,6 @@ msgid "Stock round"
 msgstr ""
 
 #. module: stock_routing
-#: sql_constraint:sale.order:0
-msgid "Order Reference must be unique !"
-msgstr ""
-
-#. module: stock_routing
-#: help:sale.order,round_id:0
-msgid "Round for this sale order"
-msgstr ""
-
-#. module: stock_routing
-#: field:stock.round,name:0
-msgid "Name"
-msgstr ""
-
-#. module: stock_routing
-#: constraint:stock.move:0
-msgid "You try to assign a lot which is not from the same product"
-msgstr ""
-
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_stock_move
-msgid "Stock Move"
-msgstr ""
-
-#. module: stock_routing
-#: help:stock.picking,round_id:0
-msgid "Round for this picking"
-msgstr ""
-
-#. module: stock_routing
-#: help:res.partner.address,round_id:0
-msgid "The default round for this address"
-msgstr ""
-
-#. module: stock_routing
 #: model:ir.module.module,description:stock_routing.module_meta_information
 msgid "This module allows to assing rounds to orders to set default locations automatically on moves"
 msgstr ""
@@ -66,23 +31,8 @@ msgid "Destination"
 msgstr ""
 
 #. module: stock_routing
-#: help:res.partner,round_id:0
-msgid "The default round for this partner"
-msgstr ""
-
-#. module: stock_routing
 #: constraint:stock.move:0
 msgid "You must assign a production lot for this product"
-msgstr ""
-
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: stock_routing
-#: help:stock.round,location_id:0
-msgid "Location for this round"
 msgstr ""
 
 #. module: stock_routing
@@ -91,18 +41,58 @@ msgid "Picking List"
 msgstr ""
 
 #. module: stock_routing
+#: help:sale.order,round_id:0
+msgid "Round for this sale order"
+msgstr ""
+
+#. module: stock_routing
+#: sql_constraint:sale.order:0
+msgid "Order Reference must be unique !"
+msgstr ""
+
+#. module: stock_routing
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product"
+msgstr ""
+
+#. module: stock_routing
+#: field:stock.round,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: stock_routing
+#: help:res.partner.address,round_id:0
+msgid "The default round for this address"
+msgstr ""
+
+#. module: stock_routing
+#: field:stock.round,name:0
+msgid "Name"
+msgstr ""
+
+#. module: stock_routing
+#: help:stock.picking,round_id:0
+msgid "Round for this picking"
+msgstr ""
+
+#. module: stock_routing
+#: help:res.partner,round_id:0
+msgid "The default round for this partner"
+msgstr ""
+
+#. module: stock_routing
+#: help:stock.round,location_id:0
+msgid "Location for this round"
+msgstr ""
+
+#. module: stock_routing
+#: model:ir.module.module,shortdesc:stock_routing.module_meta_information
+msgid "Stock Routing"
+msgstr ""
+
+#. module: stock_routing
 #: help:stock.round,name:0
 msgid "Name of the round"
-msgstr ""
-
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_res_partner
-msgid "Partner"
-msgstr ""
-
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_res_partner_address
-msgid "Partner Addresses"
 msgstr ""
 
 #. module: stock_routing
@@ -117,7 +107,27 @@ msgid "Round"
 msgstr ""
 
 #. module: stock_routing
-#: model:ir.module.module,shortdesc:stock_routing.module_meta_information
-msgid "Stock Routing"
+#: model:ir.model,name:stock_routing.model_res_partner_address
+msgid "Partner Addresses"
+msgstr ""
+
+#. module: stock_routing
+#: model:ir.model,name:stock_routing.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: stock_routing
+#: help:stock.round,company_id:0
+msgid "The company of this round"
+msgstr ""
+
+#. module: stock_routing
+#: model:ir.model,name:stock_routing.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: stock_routing
+#: model:ir.model,name:stock_routing.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
