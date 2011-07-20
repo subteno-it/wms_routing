@@ -30,7 +30,7 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-        'round_id': fields.many2one('stock.round', 'Round', help='The default round for this partner'),
+        'round_id': fields.property('stock.round', method=True, string='Round', type='many2one', relation='stock.round', view_load=True, help='The default round for this partner'),
     }
 
 res_partner()
@@ -40,7 +40,7 @@ class res_partner_address(osv.osv):
     _inherit = 'res.partner.address'
 
     _columns = {
-        'round_id': fields.many2one('stock.round', 'Round', help='The default round for this address'),
+        'round_id': fields.property('stock.round', method=True, string='Round', type='many2one', relation='stock.round', view_load=True, help='The default round for this address'),
     }
 
 res_partner_address()
