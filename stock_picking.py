@@ -37,23 +37,28 @@ class stock_picking(osv.osv):
         """
         Redefine create method to use the round_id field
         """
-        # If there is no round_id defined, we take this on the other objects
-        if not values.get('round_id', False):
-            # Take the value on the sale order, if there is one
-            if values.get('sale_id', False):
-                sale_order_obj = self.pool.get('sale.order')
-                sale_order_data = sale_order_obj.read(cr, uid, values['sale_id'], ['round_id'], context=context)
-                values['round_id'] = sale_order_data and sale_order_data['round_id']and sale_order_data['round_id'][0] or False
-            # Take the value on the partner address, if there is one and if round_id is not defined
-            if not values.get('round_id', False) and values.get('address_id', False):
-                res_partner_address_obj = self.pool.get('res.partner.address')
-                partner_address_data = res_partner_address_obj.read(cr, uid, values['address_id'], ['round_id', 'partner_id'], context=context)
-                values['round_id'] = partner_address_data and partner_address_data['round_id'] and partner_address_data['round_id'][0] or False
-                # Take the value on the partner, if there is one and if round_id is not defined
-                if not values.get('round_id', False) and partner_address_data.get('partner_id', False):
-                    res_partner_obj = self.pool.get('res.partner')
-                    partner_data = res_partner_obj.read(cr, uid, partner_address_data['partner_id'][0], ['round_id'], context=context)
-                    values['round_id'] = partner_data and partner_data['round_id'] and partner_data['round_id'][0] or False
+        if context is None:
+            context = {}
+
+        if not context.get('round_set'):
+            context['round_set'] = True;
+            # If there is no round_id defined, we take this on the other objects
+            if not values.get('round_id', False):
+                # Take the value on the sale order, if there is one
+                if values.get('sale_id', False):
+                    sale_order_obj = self.pool.get('sale.order')
+                    sale_order_data = sale_order_obj.read(cr, uid, values['sale_id'], ['round_id'], context=context)
+                    values['round_id'] = sale_order_data and sale_order_data['round_id']and sale_order_data['round_id'][0] or False
+                # Take the value on the partner address, if there is one and if round_id is not defined
+                if not values.get('round_id', False) and values.get('address_id', False):
+                    res_partner_address_obj = self.pool.get('res.partner.address')
+                    partner_address_data = res_partner_address_obj.read(cr, uid, values['address_id'], ['round_id', 'partner_id'], context=context)
+                    values['round_id'] = partner_address_data and partner_address_data['round_id'] and partner_address_data['round_id'][0] or False
+                    # Take the value on the partner, if there is one and if round_id is not defined
+                    if not values.get('round_id', False) and partner_address_data.get('partner_id', False):
+                        res_partner_obj = self.pool.get('res.partner')
+                        partner_data = res_partner_obj.read(cr, uid, partner_address_data['partner_id'][0], ['round_id'], context=context)
+                        values['round_id'] = partner_data and partner_data['round_id'] and partner_data['round_id'][0] or False
 
         id = super(stock_picking, self).create(cr, uid, values, context=context)
         return id
@@ -62,7 +67,15 @@ class stock_picking(osv.osv):
         """
         Replaces moves dest location according to the round
         """
+        if context is None:
+            context = {}
+
         res = super(stock_picking, self).action_confirm(cr, uid, ids, context=context)
+
+        if context.get('location_set'):
+            return res
+
+        context['location_set'] = True
 
         stock_move_obj = self.pool.get('stock.move')
 
