@@ -32,7 +32,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group" position="inside">
-                    <field name="round_id"/>
+                    <field name="round_id" widget="selection"/>
                 </xpath>
                 <xpath expr="/form/notebook/page/field[@name='partner_shipping_id']" position="attributes">
                     <attribute name="on_change">onchange_shipping_address(partner_id, partner_shipping_id, round_id)</attribute>
