@@ -32,10 +32,10 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/notebook/page[@string='Sales &amp; Purchases']/group/field[@name='property_stock_customer']" position="after">
-                    <field name="round_id" attrs="{'required': [('customer','=', 1)]}"/>
+                    <field name="round_id" attrs="{'required': [('customer','=', 1)]}" widget="selection"/>
                 </xpath>
                 <xpath expr="/form/notebook/page/field[@name='address']/form/group" position="inside">
-                    <field name="round_id"/>
+                    <field name="round_id" widget="selection"/>
                 </xpath>
             </field>
         </record>
@@ -48,7 +48,7 @@
             <field name="inherit_id" ref="base.view_partner_address_form1"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/group" position="inside">
-                    <field name="round_id"/>
+                    <field name="round_id" widget="selection"/>
                 </xpath>
             </field>
         </record>
