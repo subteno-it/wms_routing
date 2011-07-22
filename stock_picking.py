@@ -37,28 +37,13 @@ class stock_picking(osv.osv):
         """
         Redefine create method to use the round_id field
         """
-        if context is None:
-            context = {}
-
-        if not context.get('round_set'):
-            context['round_set'] = True;
-            # If there is no round_id defined, we take this on the other objects
-            if not values.get('round_id', False):
-                # Take the value on the sale order, if there is one
-                if values.get('sale_id', False):
-                    sale_order_obj = self.pool.get('sale.order')
-                    sale_order_data = sale_order_obj.read(cr, uid, values['sale_id'], ['round_id'], context=context)
-                    values['round_id'] = sale_order_data and sale_order_data['round_id']and sale_order_data['round_id'][0] or False
-                # Take the value on the partner address, if there is one and if round_id is not defined
-                if not values.get('round_id', False) and values.get('address_id', False):
-                    res_partner_address_obj = self.pool.get('res.partner.address')
-                    partner_address_data = res_partner_address_obj.read(cr, uid, values['address_id'], ['round_id', 'partner_id'], context=context)
-                    values['round_id'] = partner_address_data and partner_address_data['round_id'] and partner_address_data['round_id'][0] or False
-                    # Take the value on the partner, if there is one and if round_id is not defined
-                    if not values.get('round_id', False) and partner_address_data.get('partner_id', False):
-                        res_partner_obj = self.pool.get('res.partner')
-                        partner_data = res_partner_obj.read(cr, uid, partner_address_data['partner_id'][0], ['round_id'], context=context)
-                        values['round_id'] = partner_data and partner_data['round_id'] and partner_data['round_id'][0] or False
+        # If there is no round_id defined, we take this on the other objects
+        if not values.get('round_id', False):
+            # Take the value on the sale order, if there is one
+            if values.get('sale_id', False):
+                sale_order_obj = self.pool.get('sale.order')
+                sale_order_data = sale_order_obj.read(cr, uid, values['sale_id'], ['round_id'], context=context)
+                values['round_id'] = sale_order_data and sale_order_data['round_id']and sale_order_data['round_id'][0] or False
 
         id = super(stock_picking, self).create(cr, uid, values, context=context)
         return id
@@ -67,15 +52,7 @@ class stock_picking(osv.osv):
         """
         Replaces moves dest location according to the round
         """
-        if context is None:
-            context = {}
-
         res = super(stock_picking, self).action_confirm(cr, uid, ids, context=context)
-
-        if context.get('location_set'):
-            return res
-
-        context['location_set'] = True
 
         stock_move_obj = self.pool.get('stock.move')
 
@@ -85,16 +62,34 @@ class stock_picking(osv.osv):
             # Take the location on the first round we find
             if picking.round_id:
                 location_id = picking.round_id.location_id and picking.round_id.location_id.id or False
-            elif picking.address_id and picking.address_id.round_id:
-                location_id = picking.address_id.round_id.location_id and picking.address_id.round_id.location_id.id or False
-            elif picking.address_id and picking.address_id.partner_id and picking.address_id.partner_id.round_id:
-                location_id = picking.address_id.partner_id.round_id.location_id and picking.address_id.partner_id.round_id.location_id.id or False
 
             # If a location was found, replace the location_dest_id of the moves by this one
             if location_id:
                 move_ids = [move.id for move in picking.move_lines]
                 stock_move_obj.write(cr, uid, move_ids, {'location_dest_id': location_id}, context=context)
 
+        return res
+
+    def onchange_address_id(self, cr, uid, ids, address_id, round_id, context=None):
+        """
+        Returns the round_id to put on this sale order
+        """
+        res = {}
+
+        # If there is a round_id defined, we don't change the value
+        if not round_id and address_id:
+            res_partner_address_obj = self.pool.get('res.partner.address')
+            partner_address_data = res_partner_address_obj.read(cr, uid, address_id, ['partner_id', 'round_id'], context=context)
+            if partner_address_data and partner_address_data['round_id']:
+                res = {'value': {'round_id': partner_address_data['round_id'][0]}}
+
+            if not res and partner_address_data['partner_id']:
+                res_partner_obj = self.pool.get('res.partner')
+                partner_data = res_partner_obj.read(cr, uid, partner_address_data['partner_id'][0], ['round_id'], context=context)
+                if partner_data and partner_data['round_id']:
+                    res = {'value': {'round_id': partner_data['round_id'][0]}}
+
+        # No value found, we return nothing
         return res
 
 stock_picking()

@@ -34,6 +34,9 @@
                 <xpath expr="/form/group" position="inside">
                     <field name="round_id" widget="selection"/>
                 </xpath>
+                <xpath expr="/form/group/group/field[@name='address_id']" position="attributes">
+                    <attribute name="on_change">onchange_address_id(address_id, round_id)</attribute>
+                </xpath>
             </field>
         </record>
 
@@ -47,6 +50,9 @@
                 <xpath expr="/form/group" position="inside">
                     <field name="round_id" widget="selection"/>
                 </xpath>
+                <xpath expr="/form/group/group/field[@name='address_id']" position="attributes">
+                    <attribute name="on_change">onchange_address_id(address_id, round_id)</attribute>
+                </xpath>
             </field>
         </record>
 
@@ -59,6 +65,9 @@
             <field name="arch" type="xml">
                 <xpath expr="/form/group" position="inside">
                     <field name="round_id" widget="selection"/>
+                </xpath>
+                <xpath expr="/form/group/group/field[@name='address_id']" position="attributes">
+                    <attribute name="on_change">onchange_address_id(address_id, round_id)</attribute>
                 </xpath>
             </field>
         </record>
