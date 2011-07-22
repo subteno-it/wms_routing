@@ -53,7 +53,7 @@ class stock_move(osv.osv):
 
             # Modify the location_id of the move_dest_id if filled
             if values.get('move_dest_id', False):
-                self.write(cr, uid, values['move_dest_id'], {'location_id': location_id}, context=context)
+                self.write(cr, uid, [values['move_dest_id']], {'location_id': location_id}, context=context)
 
         id = super(stock_move, self).create(cr, uid, values, context=context)
         return id
