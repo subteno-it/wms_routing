@@ -30,7 +30,7 @@ class sale_order(osv.osv):
     _inherit = 'sale.order'
 
     _columns = {
-        'round_id': fields.many2one('stock.round', 'Round', help='Round for this sale order'),
+        'round_id': fields.many2one('stock.round', 'Round', help='Round for this sale order', readonly=True, states={'draft': [('readonly', False)]}),
     }
 
     def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
