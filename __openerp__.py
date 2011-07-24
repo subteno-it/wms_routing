@@ -4,6 +4,7 @@
 #    stock_routing module for OpenERP, This module allows to assing rounds to orders to set default locations automatically on moves
 #    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>)
 #              Sylvain Garancher <sylvain.garancher@syleam.fr>
+#              Sebastien LANGE <sebastien.lange@syleam.fr>
 #
 #    This file is a part of stock_routing
 #
@@ -40,9 +41,9 @@
         'security/ir.model.access.csv',
         #'wizard/wizard.xml',
         'stock_round_view.xml',
-        'res_partner_view.xml',
-        'sale_order_view.xml',
-        'stock_picking_view.xml',
+        'base_view.xml',
+        'sale_view.xml',
+        'stock_view.xml',
         'ir_rule_data.xml',
     ],
     'demo_xml': [],

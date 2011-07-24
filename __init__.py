@@ -24,10 +24,9 @@
 
 
 import stock_round
-import res_partner
-import sale_order
-import stock_picking
-import stock_move
+import base
+import sale
+import stock
 import wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
