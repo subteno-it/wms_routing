@@ -38,8 +38,6 @@ class stock_picking(osv.osv):
         """
         Redefine create method to use the round_id field
         """
-        if context is None:
-            context = {}
         # If there is no round_id defined, we take this on the other objects
         if not values.get('round_id', False):
             # Take the value on the sale order, if there is one
@@ -54,8 +52,6 @@ class stock_picking(osv.osv):
         """
         Returns the round_id to put on this sale order
         """
-        if context is None:
-            context = {}
         res = {}
 
         # If there is a round_id defined, we don't change the value
@@ -85,8 +81,6 @@ class stock_move(osv.osv):
         Replaces the location_dest_id in the values dict
         Replaces the location_id of the move_dest_id in the values dict
         """
-        if context is None:
-            context = {}
         location_id = False
         if picking_id:
             picking_data = self.pool.get('stock.picking').read(cr, uid, picking_id, ['round_id'], context=context)
@@ -100,8 +94,6 @@ class stock_move(osv.osv):
         """
         Replaces location_dest_id by the one from round of the picking
         """
-        if context is None:
-            context = {}
         location_id = self._replace_location(cr, uid, values.get('picking_id', False), context=context)
         if location_id:
             # Modify the location_dest_id
@@ -117,8 +109,6 @@ class stock_move(osv.osv):
         """
         Replaces location_dest_id by the one from round of the picking
         """
-        if context is None:
-            context = {}
         if values.get('picking_id', False):
             # Retrieve the location_id from the picking
             location_id = self._replace_location(cr, uid, values.get('picking_id'), context=context)
