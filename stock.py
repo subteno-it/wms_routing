@@ -38,6 +38,8 @@ class stock_picking(osv.osv):
         """
         Redefine create method to use the round_id field
         """
+        if context is None:
+            context = {}
         # If there is no round_id defined, we take this on the other objects
         if not values.get('round_id', False):
             # Take the value on the sale order, if there is one
@@ -46,35 +48,14 @@ class stock_picking(osv.osv):
                 sale_order_data = sale_order_obj.read(cr, uid, values['sale_id'], ['round_id'], context=context)
                 values['round_id'] = sale_order_data and sale_order_data['round_id']and sale_order_data['round_id'][0] or False
 
-        id = super(stock_picking, self).create(cr, uid, values, context=context)
-        return id
-
-    def action_confirm(self, cr, uid, ids, context=None):
-        """
-        Replaces moves dest location according to the round
-        """
-        res = super(stock_picking, self).action_confirm(cr, uid, ids, context=context)
-
-        stock_move_obj = self.pool.get('stock.move')
-
-        for picking in self.browse(cr, uid, ids, context=context):
-            location_id = False
-
-            # Take the location on the first round we find
-            if picking.round_id:
-                location_id = picking.round_id.location_id and picking.round_id.location_id.id or False
-
-            # If a location was found, replace the location_dest_id of the moves by this one
-            if location_id:
-                move_ids = [move.id for move in picking.move_lines]
-                stock_move_obj.write(cr, uid, move_ids, {'location_dest_id': location_id}, context=context)
-
-        return res
+        return super(stock_picking, self).create(cr, uid, values, context=context)
 
     def onchange_address_id(self, cr, uid, ids, address_id, round_id, context=None):
         """
         Returns the round_id to put on this sale order
         """
+        if context is None:
+            context = {}
         res = {}
 
         # If there is a round_id defined, we don't change the value
@@ -104,6 +85,8 @@ class stock_move(osv.osv):
         Replaces the location_dest_id in the values dict
         Replaces the location_id of the move_dest_id in the values dict
         """
+        if context is None:
+            context = {}
         location_id = False
         if picking_id:
             picking_data = self.pool.get('stock.picking').read(cr, uid, picking_id, ['round_id'], context=context)
@@ -117,6 +100,8 @@ class stock_move(osv.osv):
         """
         Replaces location_dest_id by the one from round of the picking
         """
+        if context is None:
+            context = {}
         location_id = self._replace_location(cr, uid, values.get('picking_id', False), context=context)
         if location_id:
             # Modify the location_dest_id
@@ -126,13 +111,14 @@ class stock_move(osv.osv):
             if values.get('move_dest_id', False):
                 self.write(cr, uid, [values['move_dest_id']], {'location_id': location_id}, context=context)
 
-        id = super(stock_move, self).create(cr, uid, values, context=context)
-        return id
+        return super(stock_move, self).create(cr, uid, values, context=context)
 
     def write(self, cr, uid, ids, values, context=None):
         """
         Replaces location_dest_id by the one from round of the picking
         """
+        if context is None:
+            context = {}
         if values.get('picking_id', False):
             # Retrieve the location_id from the picking
             location_id = self._replace_location(cr, uid, values.get('picking_id'), context=context)
@@ -151,8 +137,7 @@ class stock_move(osv.osv):
 
                 self.write(cr, uid, move_dest_ids, {'location_id': location_id}, context=context)
 
-        res = super(stock_move, self).write(cr, uid, ids, values, context=context)
-        return res
+        return super(stock_move, self).write(cr, uid, ids, values, context=context)
 
 stock_move()
 
