@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    stock_routing module for OpenERP, This module allows to assing rounds to orders to set default locations automatically on moves
+#    wms_routing module for OpenERP, This module allows to assing rounds to orders to set default locations automatically on moves
 #    Copyright (C) 2011 SYLEAM Info Services (<http://www.Syleam.fr/>)
 #              Sylvain Garancher <sylvain.garancher@syleam.fr>
 #              Sebastien LANGE <sebastien.lange@syleam.fr>
 #
-#    This file is a part of stock_routing
+#    This file is a part of wms_routing
 #
-#    stock_routing is free software: you can redistribute it and/or modify
+#    wms_routing is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    stock_routing is distributed in the hope that it will be useful,
+#    wms_routing is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Affero General Public License for more details.
@@ -48,36 +48,36 @@
     ],
     'demo_xml': [],
     'test': [
-        'test/stock_routing_test01.yml',
-        'test/stock_routing_test02.yml',
-        'test/stock_routing_test03.yml',
-        'test/stock_routing_test04.yml',
-        'test/stock_routing_test05.yml',
-        'test/stock_routing_test06.yml',
-        'test/stock_routing_test07.yml',
-        'test/stock_routing_test08.yml',
-        'test/stock_routing_test09.yml',
-        'test/stock_routing_test10.yml',
-        'test/stock_routing_test11.yml',
-        'test/stock_routing_test12.yml',
-        'test/stock_routing_test13.yml',
-        'test/stock_routing_test14.yml',
-        'test/stock_routing_test15.yml',
-        'test/stock_routing_test16.yml',
-        'test/stock_routing_test17.yml',
-        'test/stock_routing_test18.yml',
-        'test/stock_routing_test19.yml',
-#        'test/stock_routing_test20.yml',# TODO
-#        'test/stock_routing_test21.yml',# TODO
-#        'test/stock_routing_test22.yml',# TODO
-#        'test/stock_routing_test23.yml',# TODO
-        'test/stock_routing_test24.yml',
-        'test/stock_routing_test25.yml',
-        'test/stock_routing_test26.yml',
-        'test/stock_routing_test27.yml',
-        'test/stock_routing_test28.yml',
-        'test/stock_routing_test29.yml',
-#        'test/stock_routing_test30.yml',# TODO
+        'test/wms_routing_test01.yml',
+        'test/wms_routing_test02.yml',
+        'test/wms_routing_test03.yml',
+        'test/wms_routing_test04.yml',
+        'test/wms_routing_test05.yml',
+        'test/wms_routing_test06.yml',
+        'test/wms_routing_test07.yml',
+        'test/wms_routing_test08.yml',
+        'test/wms_routing_test09.yml',
+        'test/wms_routing_test10.yml',
+        'test/wms_routing_test11.yml',
+        'test/wms_routing_test12.yml',
+        'test/wms_routing_test13.yml',
+        'test/wms_routing_test14.yml',
+        'test/wms_routing_test15.yml',
+        'test/wms_routing_test16.yml',
+        'test/wms_routing_test17.yml',
+        'test/wms_routing_test18.yml',
+        'test/wms_routing_test19.yml',
+#        'test/wms_routing_test20.yml',# TODO
+#        'test/wms_routing_test21.yml',# TODO
+#        'test/wms_routing_test22.yml',# TODO
+#        'test/wms_routing_test23.yml',# TODO
+        'test/wms_routing_test24.yml',
+        'test/wms_routing_test25.yml',
+        'test/wms_routing_test26.yml',
+        'test/wms_routing_test27.yml',
+        'test/wms_routing_test28.yml',
+        'test/wms_routing_test29.yml',
+#        'test/wms_routing_test30.yml',# TODO
     ],
     #'external_dependancies': {'python': ['kombu'], 'bin': ['which']},
     'installable': True,

@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* stock_routing
+#	* wms_routing
 #
 msgid ""
 msgstr ""
@@ -15,89 +15,89 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_stock_round
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_stock_round
 msgid "Stock round"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.module.module,description:stock_routing.module_meta_information
+#. module: wms_routing
+#: model:ir.module.module,description:wms_routing.module_meta_information
 msgid "This module allows to assing rounds to orders to set default locations automatically on moves"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: field:stock.round,location_id:0
 msgid "Destination"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: constraint:stock.move:0
 msgid "You must assign a production lot for this product"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_stock_picking
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_stock_picking
 msgid "Picking List"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:sale.order,round_id:0
 msgid "Round for this sale order"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: sql_constraint:sale.order:0
 msgid "Order Reference must be unique !"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: constraint:stock.move:0
 msgid "You try to assign a lot which is not from the same product"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: field:stock.round,company_id:0
 msgid "Company"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:res.partner.address,round_id:0
 msgid "The default round for this address"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: field:stock.round,name:0
 msgid "Name"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:stock.picking,round_id:0
 msgid "Round for this picking"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:res.partner,round_id:0
 msgid "The default round for this partner"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:stock.round,location_id:0
 msgid "Location for this round"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.module.module,shortdesc:stock_routing.module_meta_information
+#. module: wms_routing
+#: model:ir.module.module,shortdesc:wms_routing.module_meta_information
 msgid "Stock Routing"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:stock.round,name:0
 msgid "Name of the round"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.actions.act_window,name:stock_routing.act_open_stock_round_view
-#: model:ir.ui.menu,name:stock_routing.menu_stock_round
+#. module: wms_routing
+#: model:ir.actions.act_window,name:wms_routing.act_open_stock_round_view
+#: model:ir.ui.menu,name:wms_routing.menu_stock_round
 #: field:res.partner,round_id:0
 #: field:res.partner.address,round_id:0
 #: field:sale.order,round_id:0
@@ -106,28 +106,28 @@ msgstr ""
 msgid "Round"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_res_partner_address
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_res_partner_address
 msgid "Partner Addresses"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_stock_move
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_stock_move
 msgid "Stock Move"
 msgstr ""
 
-#. module: stock_routing
+#. module: wms_routing
 #: help:stock.round,company_id:0
 msgid "The company of this round"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_res_partner
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_res_partner
 msgid "Partner"
 msgstr ""
 
-#. module: stock_routing
-#: model:ir.model,name:stock_routing.model_sale_order
+#. module: wms_routing
+#: model:ir.model,name:wms_routing.model_sale_order
 msgid "Sales Order"
 msgstr ""
 

@@ -2,11 +2,11 @@
     24. Create and modify stock moves
 -
     # Create the stock location
-    !record {model: stock.location, id: stock_routing_stock_location_test24}:
+    !record {model: stock.location, id: wms_routing_stock_location_test24}:
         name: Stock routing Test 24
 -
     # Create the stock picking
-    !record {model: stock.picking, id: stock_routing_stock_picking_test24}:
+    !record {model: stock.picking, id: wms_routing_stock_picking_test24}:
         name: Stock routing Test 24
         type: out
         partner_id: base.main_partner
@@ -18,9 +18,9 @@
                 product_uom: product.product_uom_unit
                 product_qty: 5
                 location_id: stock.stock_location_stock
-                location_dest_id: stock_routing_stock_location_test24
+                location_dest_id: wms_routing_stock_location_test24
 -
     # Assert the location_dest_id on the moves
-    !assert {model: stock.move, search: "[('picking_id', '=', ref(\"stock_routing_stock_picking_test24\"))]", string: 'Location on the moves'}:
-        - location_dest_id.id == ref('stock_routing_stock_location_test24')
+    !assert {model: stock.move, search: "[('picking_id', '=', ref(\"wms_routing_stock_picking_test24\"))]", string: 'Location on the moves'}:
+        - location_dest_id.id == ref('wms_routing_stock_location_test24')
 
