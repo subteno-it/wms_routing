@@ -30,9 +30,10 @@
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Round">
+                <tree string="Round" editable="bottom">
                     <field name="name"/>
                     <field name="location_id"/>
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
                 </tree>
             </field>
         </record>
@@ -46,7 +47,7 @@
                 <form string="Round">
                     <field name="name" select="1"/>
                     <field name="location_id"/>
-                    <field name="company_id" widget="selection"/>
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
                 </form>
             </field>
         </record>
