@@ -53,21 +53,16 @@ class stock_picking(osv.osv):
         Replaces moves dest location according to the round
         """
         res = super(stock_picking, self).action_confirm(cr, uid, ids, context=context)
-
         stock_move_obj = self.pool.get('stock.move')
-
         for picking in self.browse(cr, uid, ids, context=context):
             location_id = False
-
             # Take the location on the first round we find
             if picking.round_id:
                 location_id = picking.round_id.location_id and picking.round_id.location_id.id or False
-
             # If a location was found, replace the location_dest_id of the moves by this one
             if location_id:
                 move_ids = [move.id for move in picking.move_lines if (picking.round_id.location_id.chained_auto_packing == 'transparent' and picking.round_id.location_id.chained_location_id.id != move.location_dest_id.id)]
                 stock_move_obj.write(cr, uid, move_ids, {'location_dest_id': location_id}, context=context)
-
         return res
 
     def onchange_address_id(self, cr, uid, ids, address_id, round_id, context=None):
