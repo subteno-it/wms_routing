@@ -72,6 +72,12 @@ class sale_order(osv.osv):
         # No value found, we return nothing
         return res
 
+    def _prepare_order_picking(self, cr, uid, order, context=None):
+        result = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=context)
+        if order.round_id:
+            result['round_id'] = order.round_id.id
+        return result
+
 sale_order()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
