@@ -39,12 +39,9 @@ class sale_order(osv.osv):
         Redefine this method to fill round_id when changing partner
         """
         res = super(sale_order, self).onchange_partner_id(cr, uid, ids, partner_id)
-
         new_val = self.onchange_shipping_address(cr, uid, ids, partner_id, res['value']['partner_shipping_id'], None, context=context)
-
         if new_val:
             res['value']['round_id'] = new_val['value']['round_id']
-
         return res
 
     def onchange_shipping_address(self, cr, uid, ids, partner_id, partner_shipping_id, round_id, context=None):
@@ -52,23 +49,19 @@ class sale_order(osv.osv):
         Returns the round_id to put on this sale order
         """
         res = {}
-
         # If there is a round_id defined, we don't change the value
         if not round_id:
-
             # We search the round_id value on the address, then, on the partner
             if partner_shipping_id:
                 res_partner_address_obj = self.pool.get('res.partner.address')
                 partner_address_data = res_partner_address_obj.read(cr, uid, partner_shipping_id, ['round_id'], context=context)
                 if partner_address_data and partner_address_data['round_id']:
                     res = {'value': {'round_id': partner_address_data['round_id'][0]}}
-
             if not res and partner_id:
                 res_partner_obj = self.pool.get('res.partner')
                 partner_data = res_partner_obj.read(cr, uid, partner_id, ['round_id'], context=context)
                 if partner_data and partner_data['round_id']:
                     res = {'value': {'round_id': partner_data['round_id'][0]}}
-
         # No value found, we return nothing
         return res
 
